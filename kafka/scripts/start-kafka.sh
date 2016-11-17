@@ -63,5 +63,11 @@ if [ ! -z "$AUTO_CREATE_TOPICS" ]; then
     echo "auto.create.topics.enable=$AUTO_CREATE_TOPICS" >> $KAFKA_HOME/config/server.properties
 fi
 
+# Make replication factor configurable
+if [ ! -z "$REPLICATION_FACTOR" ]; then
+    echo "default.replication.factor: $REPLICATION_FACTOR"
+    echo "default.replication.factor=$REPLICATION_FACTOR" >> $KAFKA_HOME/config/server.properties
+fi
+
 # Run Kafka
 $KAFKA_HOME/bin/kafka-server-start.sh $KAFKA_HOME/config/server.properties
